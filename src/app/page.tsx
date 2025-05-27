@@ -25,6 +25,7 @@ export default function Home() {
         <li>{movie?.title}</li>
         {movie?.genreNames.map((g, i) => <li key={i}>{g}</li>)}
       </ul>
+      <a href="/mode">Mode</a>
     </div>
   );
 }

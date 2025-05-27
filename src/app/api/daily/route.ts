@@ -1,13 +1,17 @@
 import { NextResponse } from "next/server";
 import { getDailyMovieCollection } from "@/lib/mongodb";
 
+interface Genre {
+  id: number;
+  name: string;
+}
+
 function getTodayDateRange(): { start: Date; end: Date } {
     const now = new Date();
     const start = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate()));
     const end = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate() + 1));
     return { start, end };
 }
-
 
 export async function GET() {
     const { start, end } = getTodayDateRange();
@@ -40,16 +44,16 @@ export async function GET() {
     });
 
     const genresData = await movieGenres.json();
-    const genres = genresData.genres;
+    const genres: Genre[] = genresData.genres;
     const movieIndex = Math.floor(Math.random() * movies.length);
     const selectedMovie = movies[movieIndex];
 
     const genreNames = selectedMovie.genre_ids
-        .map((id: number) => {
-            const genre = genres.find((g: any) => g.id === id);
-            return genre ? genre.name : null;
-        })
-        .filter((name: string): name is string => name !== null);
+    .map((id: number) => {
+        const genre = genres.find((g: Genre) => g.id === id);
+        return genre ? genre.name : null;
+    })
+    .filter((name: string): name is string => name !== null);
 
     selectedMovie.genreNames = genreNames;
 
