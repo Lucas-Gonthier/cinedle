@@ -1,19 +1,18 @@
-import { MongoClient, Db, Collection } from "mongodb";
+import { MongoClient, Collection } from "mongodb";
 
 const uri = process.env.MONGODB_URI as string;
 const options = {};
 
 let client: MongoClient;
-let db: Db;
 
 if (!uri) {
-	throw new Error("❌ MONGODB_URI n'est pas défini dans .env.local");
+	throw new Error("l'URI n'est pas défini dans .env.local");
 }
 
 let clientPromise: Promise<MongoClient>;
 
 declare global {
-	var _mongoClientPromise: Promise<MongoClient>;
+	let _mongoClientPromise: Promise<MongoClient>;
 }
 
 if (process.env.NODE_ENV === "development") {
