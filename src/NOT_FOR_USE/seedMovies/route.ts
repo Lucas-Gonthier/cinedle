@@ -1,6 +1,5 @@
 import { NextResponse } from 'next/server';
 import { getAllMoviesCollection } from '@/lib/mongodb';
-import { MongoClient } from 'mongodb';
 
 const TMDB_API_KEY = process.env.TMDB_API_KEY;
 
