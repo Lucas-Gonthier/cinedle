@@ -25,7 +25,7 @@ export async function GET() {
         return NextResponse.json(existing);
     }
     
-    const pageIndex = Math.floor(Math.random() * 500) + 1;
+    const pageIndex = Math.floor(Math.random() * 100) + 1;
     const moviePage = await fetch(`https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=${pageIndex}&sort_by=vote_average.desc&without_genres=99,10755&vote_count.gte=200`, {
         headers: {
             Authorization: `Bearer ${process.env.TMDB_API_KEY}`,
@@ -59,6 +59,7 @@ export async function GET() {
 
     const insertDoc = {
         InsertDate: new Date(),
+        Page: pageIndex,
         ...selectedMovie,
     };
     
