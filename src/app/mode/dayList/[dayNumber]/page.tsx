@@ -26,12 +26,10 @@ export default function Mode() {
             <h1>Film numéro {dayNumber}</h1>
             <div className="flex justify-center items-center">
                 <ul>
-                    <li>{movie?.title ?? "Aucun film disponible"}</li>
+                    <li>{movie?.title}</li>
                     {movie?.genreNames && movie.genreNames.length > 0 ? (
                     movie.genreNames.map((g, i) => <li key={i}>{g}</li>)
-                    ) : (
-                    <li>Pas de genres disponibles</li>
-                    )}
+                    ) : (<></>)}
                 </ul>
             </div>
         </div>
