@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from 'react';
 import { useParams } from 'next/navigation';
-import { getDailyMovieCollection } from "@/lib/mongodb";
 
 interface Movie {
     title: string;

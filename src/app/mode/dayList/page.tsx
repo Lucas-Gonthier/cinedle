@@ -1,8 +1,9 @@
 "use client"
 
 import { useEffect, useState } from 'react';
+import Link from 'next/link';
 
-export default function dayList() {
+export default function DayList() {
 
     const [count, setCount] = useState();
 
@@ -21,7 +22,7 @@ export default function dayList() {
             <div className="flex flex-col justify-center items-center">
                 {count !== undefined && Array.from({ length: count }, (_, i) => (
                     <div key={i+1} className="flex flex-row">
-                        <a href={`/mode/dayList/${i+1}`}>Jour {i+1}</a>
+                        <Link href={`/mode/dayList/${i+1}`}>Jour {i+1}</Link>
                     </div>
                 ))}
                 
